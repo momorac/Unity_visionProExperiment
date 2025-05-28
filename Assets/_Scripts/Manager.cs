@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
@@ -30,8 +31,14 @@ public class Manager : MonoBehaviour
     [Space(10)]
     [Header("References")]
     [SerializeField] private Transform frame;
-    [SerializeField] private GameObject warningPopup;
     [SerializeField] private GameObject[] pages;
+
+    [Space(10)]
+    [Header("WarningPopup")]
+    [SerializeField] private GameObject warningPopup;
+    [SerializeField] Button popup_button_close;
+    [SerializeField] TextMeshProUGUI popup_text_ment;
+
 
     private Dictionary<Distance, Vector3> distances = new Dictionary<Distance, Vector3>
     {
@@ -55,6 +62,8 @@ public class Manager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        popup_button_close.onClick.AddListener(CloseWarningPopup);
     }
 
     private void Start()
@@ -100,6 +109,17 @@ public class Manager : MonoBehaviour
     {
         currentState = _state;
         currentDetail = _detail;
+    }
+
+    public void ShowWarningPopup(String ment)
+    {
+        popup_text_ment.text = ment;
+        warningPopup.SetActive(true);
+    }
+
+    public void CloseWarningPopup()
+    {
+        warningPopup.SetActive(false);
     }
 
 }

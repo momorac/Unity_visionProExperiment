@@ -35,7 +35,7 @@ public class Page2 : MonoBehaviour
     private void OnEnable()
     {
         Manager.Instance.SetState(Manager.State.Page2_Option, "page2_none");
-        dropdown.onValueChanged.Invoke(0);
+        dropdown.value = 0;
     }
 
     private void OnButtonClick()
@@ -48,7 +48,7 @@ public class Page2 : MonoBehaviour
         }
         else
         {
-            WarningPopup.Instance.ShowWarningPopup("사이즈를 선택해주세요.");
+            Manager.Instance.ShowWarningPopup("사이즈를 선택해주세요.");
         }
     }
 
