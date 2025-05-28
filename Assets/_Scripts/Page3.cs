@@ -7,6 +7,7 @@ public class Page3 : MonoBehaviour
 {
     [SerializeField] private GameObject go_page4;
     [SerializeField] private Button button;
+    [SerializeField] private Image buttonFront;
     [SerializeField] private Toggle toggle;
     [SerializeField] private Color[] buttonColors;
 
@@ -46,16 +47,6 @@ public class Page3 : MonoBehaviour
 
     void UpdateButtonColor(Color newNormalColor)
     {
-        ColorBlock cb = button.colors;
-        cb.normalColor = newNormalColor;
-
-        // 추가로 highlightedColor도 바꿔주면 체감이 잘 됨
-        cb.highlightedColor = newNormalColor;
-
-        button.colors = cb;
-
-        // 강제로 버튼 상태를 바꿨다가 되돌리기
-        button.interactable = false;
-        button.interactable = true;
+        buttonFront.color = newNormalColor;
     }
 }
