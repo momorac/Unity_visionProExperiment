@@ -42,7 +42,7 @@ public class Manager : MonoBehaviour
 
     private Dictionary<Distance, Vector3> scales = new Dictionary<Distance, Vector3>
     {
-        { Distance.Half, new Vector3(0.05f, 0.05f, 0.05f) },
+        { Distance.Half, new Vector3(0.04f, 0.04f, 0.04f) },
         { Distance.One, new Vector3(0.1f, 0.1f, 0.1f) },
         { Distance.Two, new Vector3(0.18f, 0.18f, 0.18f) },
     };
