@@ -63,7 +63,7 @@ public class GazeTrackingController : MonoBehaviour
             // 예시로 표시
             // Debug.Log($"Virtual Touch at {fakeTouch.interactionPosition}");
 
-            string entry = $"{timer},{manager.currentDistance},{manager.currentState},{manager.currentDetail},{fakeTouch.interactionPosition.x:F5},{fakeTouch.interactionPosition.y:F5},{fakeTouch.interactionPosition.z:F5}";
+            string entry = $"{timer:F2},{manager.currentDistance},{manager.currentState},{manager.currentDetail},{fakeTouch.interactionPosition.x:F5},{fakeTouch.interactionPosition.y:F5},{fakeTouch.interactionPosition.z:F5}";
             logData.Add(entry);
 
         }
