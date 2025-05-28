@@ -10405,6 +10405,7 @@ MonoBehaviour:
   currentState: 0
   currentDetail: 
   frame: {fileID: 863633564}
+  warningPopup: {fileID: 0}
   pages:
   - {fileID: 35778678}
   - {fileID: 151522354}
@@ -16456,6 +16457,7 @@ GameObject:
   - component: {fileID: 3106905211476572610}
   - component: {fileID: 3106905211476572609}
   - component: {fileID: 3106905211476572608}
+  - component: {fileID: 3106905211476572622}
   - component: {fileID: 3106905211476572611}
   m_Layer: 5
   m_Name: Template
@@ -16464,6 +16466,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &3106905211476572622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3106905211476572621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3cd3fca825854cb692de31ebbdf4da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3106905212097127856
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16799,8 +16813,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: --
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
-  m_sharedMaterial: {fileID: 4687939059374929122, guid: f675742eaf9c20a4f909d78ee7a14fed, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 11b84e88bcf8442a8a18defbcfcbb032, type: 2}
+  m_sharedMaterial: {fileID: -7757070190161545473, guid: 11b84e88bcf8442a8a18defbcfcbb032, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
