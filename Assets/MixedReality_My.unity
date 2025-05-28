@@ -10405,7 +10405,7 @@ MonoBehaviour:
   currentState: 0
   currentDetail: 
   frame: {fileID: 863633564}
-  warningPopup: {fileID: 0}
+  warningPopup: {fileID: 1697662089}
   pages:
   - {fileID: 35778678}
   - {fileID: 151522354}

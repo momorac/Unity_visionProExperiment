@@ -51,7 +51,7 @@ public class Page3 : MonoBehaviour
         }
         else
         {
-            WarningPopup.Instance.ShowWarningPopup("약관을 동의해주세요.", button);
+            WarningPopup.Instance.ShowWarningPopup("약관을 동의해주세요.", button, null);
         }
     }
 }

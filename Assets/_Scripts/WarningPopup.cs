@@ -23,7 +23,7 @@ public class WarningPopup : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ShowWarningPopup(String ment, Button button, TMP_Dropdown dropdown = null)
+    public void ShowWarningPopup(String ment, Button button, TMP_Dropdown dropdown)
     {
         hideButton = button;
         hideButton.interactable = false;
@@ -36,7 +36,7 @@ public class WarningPopup : MonoBehaviour
 
     public void CloseWarningPopup()
     {
-        hideButton.interactable = true;
+        if (hideButton != null) hideButton.interactable = true;
         if (hideDropdown != null) hideDropdown.interactable = true;
         gameObject.SetActive(false);
     }
