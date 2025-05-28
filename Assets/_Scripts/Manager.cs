@@ -30,6 +30,7 @@ public class Manager : MonoBehaviour
     [Space(10)]
     [Header("References")]
     [SerializeField] private Transform frame;
+    [SerializeField] private GameObject warningPopup;
     [SerializeField] private GameObject[] pages;
 
     private Dictionary<Distance, Vector3> distances = new Dictionary<Distance, Vector3>
@@ -58,6 +59,8 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        warningPopup.SetActive(false);
+
         currentDistance = Distance.Half;
         currentState = State.Page1_Products;
         currentDetail = "null";
