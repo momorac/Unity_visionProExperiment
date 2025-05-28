@@ -22,6 +22,7 @@ public class Page3 : MonoBehaviour
 
         toggle.onValueChanged.AddListener((isOn) =>
         {
+            Manager.Instance.SetState(Manager.State.Page3_Purchase, "page3_toggleOn");
             UpdateButtonColor(isOn ? buttonColors[0] : buttonColors[1]);
         });
     }

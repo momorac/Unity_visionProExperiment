@@ -9,7 +9,7 @@ public class Page4 : MonoBehaviour
 
     private void OnEnable()
     {
-        Manager.Instance.SetState(Manager.State.Page4_Finished, "none");
+        Manager.Instance.SetState(Manager.State.Page4_Finished, "page4_none");
         StartCoroutine(COR_TextTimer());
     }
 

@@ -42,7 +42,7 @@ public class Page2 : MonoBehaviour
     {
         if (dropdown.options[dropdown.value].text == "Free")
         {
-            Manager.Instance.SetState(Manager.State.Page2_Option, "size_select_finished");
+            Manager.Instance.SetState(Manager.State.Page2_Option, "page2_size_select_finished");
             gameObject.SetActive(false);
             go_page3.SetActive(true);
         }
