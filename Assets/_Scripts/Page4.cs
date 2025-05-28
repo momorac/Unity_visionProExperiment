@@ -20,9 +20,9 @@ public class Page4 : MonoBehaviour
         while (timer > 0)
         {
             if (Manager.Instance.currentDistance != Manager.Distance.Two)
-                text_title.text = $"4.감사합니다. {timer}초 후 다음 실험으로 넘어가겠습니다!";
+                text_title.text = $"4. 단계를 마쳤습니다. {timer}초 후 다음으로 넘어갑니다.";
             else
-                text_title.text = $"4.실험을 모두 마쳤습니다!{timer}초 후 자동으로 종료됩니다.";
+                text_title.text = $"4. 실험을 모두 마쳤습니다. {timer}초 후 자동으로 종료됩니다.";
             yield return waitForSeconds;
             timer--;
         }
