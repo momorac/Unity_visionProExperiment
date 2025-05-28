@@ -29,8 +29,8 @@ public class Page3 : MonoBehaviour
 
     private void OnEnable()
     {
-        Manager.Instance.SetState(Manager.State.Page3_Purchase, "page3_none");
         toggle.isOn = false;
+        Manager.Instance.SetState(Manager.State.Page3_Purchase, "page3_none");
     }
 
     private void OnButtonClick()
