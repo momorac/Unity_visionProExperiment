@@ -75,7 +75,11 @@ public class Manager : MonoBehaviour
         currentDetail = "null";
 
         SetDistance();
+
         pages[0].SetActive(true);
+        pages[1].SetActive(false);
+        pages[2].SetActive(false);
+        pages[3].SetActive(false);
     }
 
     public void SetNextStep()
