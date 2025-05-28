@@ -34,7 +34,8 @@ public class Page2 : MonoBehaviour
 
     private void OnEnable()
     {
-        Manager.Instance.SetState(Manager.State.Page2_Option, "none");
+        Manager.Instance.SetState(Manager.State.Page2_Option, "page2_none");
+        dropdown.onValueChanged.Invoke(0);
     }
 
     private void OnButtonClick()

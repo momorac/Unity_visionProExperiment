@@ -34,12 +34,12 @@ public class Page3 : MonoBehaviour
                 button.colors = cb;
             }
         });
-
     }
 
     private void OnEnable()
     {
-        Manager.Instance.SetState(Manager.State.Page3_Purchase, "none");
+        Manager.Instance.SetState(Manager.State.Page3_Purchase, "page3_none");
+        toggle.onValueChanged.Invoke(false);
     }
 
     private void OnButtonClick()
