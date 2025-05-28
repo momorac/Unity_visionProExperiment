@@ -48,7 +48,7 @@ public class Page2 : MonoBehaviour
         }
         else
         {
-            WarningPopup.Instance.ShowWarningPopup("사이즈를 선택해주세요.", button, dropdown);
+            WarningPopup.Instance.ShowWarningPopup("사이즈를 선택해주세요.");
         }
     }
 

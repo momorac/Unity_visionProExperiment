@@ -23,21 +23,14 @@ public class WarningPopup : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ShowWarningPopup(String ment, Button button, TMP_Dropdown dropdown)
+    public void ShowWarningPopup(String ment)
     {
-        hideButton = button;
-        hideButton.interactable = false;
-        hideDropdown = dropdown;
-        if (hideDropdown != null) hideDropdown.interactable = false;
-
         text_ment.text = ment;
         gameObject.SetActive(true);
     }
 
     public void CloseWarningPopup()
     {
-        if (hideButton != null) hideButton.interactable = true;
-        if (hideDropdown != null) hideDropdown.interactable = true;
         gameObject.SetActive(false);
     }
 
