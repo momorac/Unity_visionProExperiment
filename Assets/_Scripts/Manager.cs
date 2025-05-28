@@ -36,7 +36,7 @@ public class Manager : MonoBehaviour
     [Space(10)]
     [Header("WarningPopup")]
     [SerializeField] private GameObject warningPopup;
-    [SerializeField] Button popup_button_close;
+    // [SerializeField] Button popup_button_close;
     [SerializeField] TextMeshProUGUI popup_text_ment;
 
 
@@ -63,7 +63,7 @@ public class Manager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        popup_button_close.onClick.AddListener(CloseWarningPopup);
+        // popup_button_close.onClick.AddListener(CloseWarningPopup);
     }
 
     private void Start()
