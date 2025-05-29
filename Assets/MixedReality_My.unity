@@ -974,6 +974,7 @@ GameObject:
   - component: {fileID: 112396847}
   - component: {fileID: 112396849}
   - component: {fileID: 112396848}
+  - component: {fileID: 112396851}
   m_Layer: 5
   m_Name: Canvas_main
   m_TagString: Untagged
@@ -1073,6 +1074,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112396844}
   m_CullTransparentMesh: 1
+--- !u!225 &112396851
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112396844}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &131876812
 GameObject:
   m_ObjectHideFlags: 0
@@ -10212,6 +10225,7 @@ MonoBehaviour:
   currentState: 0
   currentDetail: 
   frame: {fileID: 863633564}
+  mainCanvas: {fileID: 112396851}
   pages:
   - {fileID: 35778678}
   - {fileID: 151522354}
@@ -12260,6 +12274,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 112396851}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!222 &1592802623
 CanvasRenderer:

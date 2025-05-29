@@ -31,6 +31,7 @@ public class Manager : MonoBehaviour
     [Space(10)]
     [Header("References")]
     [SerializeField] private Transform frame;
+    [SerializeField] private CanvasGroup mainCanvas;
     [SerializeField] private GameObject[] pages;
 
     [Space(10)]
@@ -118,12 +119,8 @@ public class Manager : MonoBehaviour
     public void ShowWarningPopup(String ment)
     {
         popup_text_ment.text = ment;
+        mainCanvas.interactable = false;
         warningPopup.SetActive(true);
-    }
-
-    public void CloseWarningPopup()
-    {
-        warningPopup.SetActive(false);
     }
 
 }
