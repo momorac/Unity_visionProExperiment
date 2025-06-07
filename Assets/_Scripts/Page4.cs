@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Page4 : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text_title;
+    [SerializeField] private TextMeshProUGUI text;
 
     private void OnEnable()
     {
@@ -17,12 +17,18 @@ public class Page4 : MonoBehaviour
     private IEnumerator COR_TextTimer()
     {
         int timer = 7;
+        string nextDistance = "0.5m";
+        if (Manager.Instance.currentDistance == Manager.Distance.Half) nextDistance = "1m";
+        else if (Manager.Instance.currentDistance == Manager.Distance.One) nextDistance = "2m";
+        else if (Manager.Instance.currentDistance == Manager.Distance.Two) nextDistance = "0.5m";
+
         while (timer > 0)
         {
-            if (Manager.Instance.currentDistance != Manager.Distance.Two)
-                text_title.text = $"4. 단계를 마쳤습니다. {timer}초 후 다음으로 넘어갑니다.";
+            if (Manager.Instance.cycle == 2 && Manager.Instance.currentDistance == Manager.Distance.Two)
+                text.text = $"실험을 모두 마쳤습니다. {timer}초 후 자동으로 종료됩니다.";
             else
-                text_title.text = $"4. 실험을 모두 마쳤습니다. {timer}초 후 자동으로 종료됩니다.";
+                text.text = $"거리 조건 {nextDistance} 실험이 {timer}초 뒤 시작됩니다.";
+
             yield return waitForSeconds;
             timer--;
         }

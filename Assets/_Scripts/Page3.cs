@@ -42,7 +42,6 @@ public class Page3 : MonoBehaviour
         }
         else
         {
-            Manager.Instance.ShowWarningPopup("약관을 동의해주세요.");
         }
     }
 

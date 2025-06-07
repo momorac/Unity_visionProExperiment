@@ -20,6 +20,7 @@ public class GazeTrackingController : MonoBehaviour
     private string filePath;
 
     private Manager manager;
+    [HideInInspector] public bool is_started;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class GazeTrackingController : MonoBehaviour
 
     void Start()
     {
+        is_started = false;
         string time = DateTime.Now.ToString("MMdd_HHmm");
         filePath = Path.Combine(Application.persistentDataPath, $"GazeLog_{time}.csv");
         logData.Add("Time,Distance,Page,Detail,XPos,YPos,ZPos"); // 헤더
@@ -35,6 +37,8 @@ public class GazeTrackingController : MonoBehaviour
 
     void Update()
     {
+        if (!is_started) return;
+
         timer_interval += Time.deltaTime;
         timer += Time.deltaTime;
         if (timer_interval >= interval)
@@ -89,8 +93,4 @@ public class GazeTrackingController : MonoBehaviour
 
     }
 
-    public void ExitApplication()
-    {
-        Application.Quit();
-    }
 }

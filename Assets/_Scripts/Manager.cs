@@ -23,6 +23,7 @@ public class Manager : MonoBehaviour
 
     public static Manager Instance { get; private set; }
 
+    public int cycle;
     public Distance currentDistance;
     public State currentState;
     public string currentDetail;
@@ -33,13 +34,6 @@ public class Manager : MonoBehaviour
     [SerializeField] private Transform frame;
     [SerializeField] private CanvasGroup mainCanvas;
     [SerializeField] private GameObject[] pages;
-
-    [Space(10)]
-    [Header("WarningPopup")]
-    [SerializeField] private GameObject warningPopup;
-    // [SerializeField] Button popup_button_close;
-    [SerializeField] TextMeshProUGUI popup_text_ment;
-
 
     private Dictionary<Distance, Vector3> distances = new Dictionary<Distance, Vector3>
     {
@@ -69,8 +63,11 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
-        warningPopup.SetActive(false);
+        cycle = 1;
+    }
 
+    public void StartExperiment()
+    {
         currentDistance = Distance.Half;
         currentState = State.Page1_Products;
         currentDetail = "null";
@@ -91,9 +88,19 @@ public class Manager : MonoBehaviour
             currentDistance = Distance.Two;
         else if (currentDistance == Distance.Two)
         {
-            GetComponent<GazeTrackingController>().SaveLog();
-            Application.Quit();
-            return;
+            if (cycle == 1)
+            {
+                cycle = 2;
+                StartExperiment();
+                GetComponent<GazeTrackingController>().is_started = true;
+                return;
+            }
+            else if (cycle == 2)
+            {
+                GetComponent<GazeTrackingController>().SaveLog();
+                Application.Quit();
+                return;
+            }
         }
 
         pages[0].SetActive(true);
@@ -116,11 +123,10 @@ public class Manager : MonoBehaviour
         currentDetail = _detail;
     }
 
-    public void ShowWarningPopup(String ment)
+
+    public void ExitApplication()
     {
-        popup_text_ment.text = ment;
-        mainCanvas.interactable = false;
-        warningPopup.SetActive(true);
+        Application.Quit();
     }
 
 }
