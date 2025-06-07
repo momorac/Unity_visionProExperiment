@@ -48,6 +48,7 @@ public class Page2 : MonoBehaviour
         }
         else
         {
+            Manager.Instance.ShowToastMessageDelay("사이즈를 선택해주세요.");
         }
     }
 

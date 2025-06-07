@@ -42,6 +42,7 @@ public class Page3 : MonoBehaviour
         }
         else
         {
+            Manager.Instance.ShowToastMessageDelay("약관에 동의해주세요.");
         }
     }
 

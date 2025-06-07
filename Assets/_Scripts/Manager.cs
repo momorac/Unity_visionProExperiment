@@ -35,6 +35,13 @@ public class Manager : MonoBehaviour
     [SerializeField] private CanvasGroup mainCanvas;
     [SerializeField] private GameObject[] pages;
 
+
+    [Space(10)]
+    [Header("Toast")]
+    [SerializeField] private GameObject go_toast;
+    [SerializeField] private TextMeshProUGUI text_toast;
+    private CanvasGroup cg_toast;
+
     private Dictionary<Distance, Vector3> distances = new Dictionary<Distance, Vector3>
     {
         { Distance.Half, new Vector3(0, 1.2f, 0.5f) },
@@ -49,8 +56,6 @@ public class Manager : MonoBehaviour
         { Distance.Two, new Vector3(0.18f, 0.18f, 0.18f) },
     };
 
-
-
     private void Awake()
     {
         if (Instance == null)
@@ -58,14 +63,16 @@ public class Manager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        // popup_button_close.onClick.AddListener(CloseWarningPopup);
+        cg_toast = go_toast.GetComponent<CanvasGroup>();
     }
 
     private void Start()
     {
         cycle = 1;
+        go_toast.SetActive(false);
     }
 
+    // 1번째, 2번재 실험 초기화 메소드
     public void StartExperiment()
     {
         currentDistance = Distance.Half;
@@ -80,6 +87,7 @@ public class Manager : MonoBehaviour
         pages[3].SetActive(false);
     }
 
+    // 각 단계 종료 후 초기화 메소드
     public void SetNextStep()
     {
         if (currentDistance == Distance.Half)
@@ -111,17 +119,49 @@ public class Manager : MonoBehaviour
         SetDistance();
     }
 
+    // 거리 설정 메소드
     private void SetDistance()
     {
         frame.position = distances[currentDistance];
         frame.localScale = scales[currentDistance];
     }
 
+    // 로그용 현재 state 설정 메소드
     public void SetState(State _state, string _detail)
     {
         currentState = _state;
         currentDetail = _detail;
     }
+
+    public void ShowToastMessageDelay(string ment)
+    {
+        StartCoroutine(ment);
+    }
+
+    private WaitForSeconds waitForSeconds = new WaitForSeconds(0.04f);
+    private IEnumerator ShowToastMessage(string ment)
+    {
+        text_toast.text = ment;
+        cg_toast.alpha = 0;
+        go_toast.SetActive(true);
+
+        while (cg_toast.alpha < 1f)
+        {
+            cg_toast.alpha += 0.05f;
+            yield return waitForSeconds;
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        while (cg_toast.alpha > 0)
+        {
+            cg_toast.alpha -= 0.05f;
+            yield return waitForSeconds;
+        }
+        go_toast.SetActive(false); ;
+    }
+
+
 
 
     public void ExitApplication()
