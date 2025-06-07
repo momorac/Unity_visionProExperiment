@@ -15,7 +15,7 @@ public class Page2 : MonoBehaviour
     {
         dropdown.onValueChanged.AddListener((value) =>
         {
-            TouchGazeTracker.Instance.AddLog($"{dropdown.options[dropdown.value].text}_selected");
+            TouchGazeTracker.Instance.AddLog($"Dropdown_{dropdown.options[dropdown.value].text}_selected");
             if (dropdown.options[dropdown.value].text == "Free")
             {
                 ColorBlock cb = button.colors;        // 현재 ColorBlock을 복사

@@ -82,13 +82,13 @@ public class TouchGazeTracker : MonoBehaviour
         // show input visualization
         if (touchZeroPhase == TouchPhase.Began)
         {
-            string entry = $"{timer:F2},{manager.currentDistance},{manager.currentState},{manager.currentDetail},{touchZeroValue.interactionPosition.x:F5},{touchZeroValue.interactionPosition.y:F5},{touchZeroValue.interactionPosition.z:F5}";
+            string entry = $"{timer:F1},{manager.currentDistance},{manager.currentState},{manager.currentDetail},{touchZeroValue.interactionPosition.x:F5},{touchZeroValue.interactionPosition.y:F5},{touchZeroValue.interactionPosition.z:F5}";
             logData.Add(entry);
         }
 
         if (touchOnePhase == TouchPhase.Began)
         {
-            string entry = $"{timer:F2},{manager.currentDistance},{manager.currentState},{manager.currentDetail},{touchOneValue.interactionPosition.x:F5},{touchOneValue.interactionPosition.y:F5},{touchOneValue.interactionPosition.z:F5}";
+            string entry = $"{timer:F1},{manager.currentDistance},{manager.currentState},{manager.currentDetail},{touchOneValue.interactionPosition.x:F5},{touchOneValue.interactionPosition.y:F5},{touchOneValue.interactionPosition.z:F5}";
             logData.Add(entry);
         }
     }
@@ -97,7 +97,7 @@ public class TouchGazeTracker : MonoBehaviour
     {
         if (!is_started) return;
 
-        string entry = $"{timer:F2},{manager.currentDistance},{manager.currentState},{manager.currentDetail},--,--,--,{ui}_clicked";
+        string entry = $"{timer:F1},{manager.currentDistance},{manager.currentState},{manager.currentDetail},--,--,--,{ui}";
         logData.Add(entry);
     }
 
@@ -124,7 +124,7 @@ public class TouchGazeTracker : MonoBehaviour
     {
         try
         {
-            string[] files = Directory.GetFiles(Application.persistentDataPath, "GazeLog_*.csv");
+            string[] files = Directory.GetFiles(Application.persistentDataPath, "*.csv");
 
             foreach (string file in files)
             {

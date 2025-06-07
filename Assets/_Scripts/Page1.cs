@@ -10,10 +10,10 @@ public class Page1 : MonoBehaviour
 
     private void Awake()
     {
-        buttons[0].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_1"));
-        buttons[1].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_2"));
-        buttons[2].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_3"));
-        buttons[3].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_4"));
+        buttons[0].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_1_clicked"));
+        buttons[1].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_2_clicked"));
+        buttons[2].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_3_clicked"));
+        buttons[3].onClick.AddListener(() => TouchGazeTracker.Instance.AddLog("Button_4_clicked"));
     }
 
     private void OnEnable()
