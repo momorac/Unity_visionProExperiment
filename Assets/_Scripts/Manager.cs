@@ -72,6 +72,8 @@ public class Manager : MonoBehaviour
         cycle = 1;
         go_toast.SetActive(false);
         instruction.SetActive(true);
+        foreach (var page in pages)
+            page.SetActive(false);
     }
 
     // 1번째, 2번재 실험 초기화 메소드

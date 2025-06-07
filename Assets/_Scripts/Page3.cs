@@ -22,6 +22,9 @@ public class Page3 : MonoBehaviour
 
         toggle.onValueChanged.AddListener((isOn) =>
         {
+            if (isOn) TouchGazeTracker.Instance.AddLog($"Toggle_on");
+            else TouchGazeTracker.Instance.AddLog($"Toggle_off");
+
             Manager.Instance.SetState(Manager.State.Page3_Purchase, "page3_toggleOn");
             UpdateButtonColor(isOn ? buttonColors[0] : buttonColors[1]);
         });
@@ -37,11 +40,13 @@ public class Page3 : MonoBehaviour
     {
         if (toggle.isOn)
         {
+            TouchGazeTracker.Instance.AddLog($"Button_clicked_true");
             gameObject.SetActive(false);
             go_page4.SetActive(true);
         }
         else
         {
+            TouchGazeTracker.Instance.AddLog($"Button_clicked_false");
             Manager.Instance.ShowToastMessageDelay("약관에 동의해주세요.");
         }
     }

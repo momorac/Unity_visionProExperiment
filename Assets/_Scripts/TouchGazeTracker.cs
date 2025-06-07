@@ -12,9 +12,9 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class TouchGazeTracker : MonoBehaviour
 {
-    float timer = 0;
+    public static TouchGazeTracker Instance;
 
-    public Action OnPageUIClicked;
+    float timer = 0;
 
     private List<string> logData = new List<string>();
     private string filePath;
@@ -40,6 +40,9 @@ public class TouchGazeTracker : MonoBehaviour
     private void Awake()
     {
         manager = GetComponent<Manager>();
+
+        if (Instance == null)
+            Instance = this;
     }
 
     void Start()
@@ -88,6 +91,14 @@ public class TouchGazeTracker : MonoBehaviour
             string entry = $"{timer:F2},{manager.currentDistance},{manager.currentState},{manager.currentDetail},{touchOneValue.interactionPosition.x:F5},{touchOneValue.interactionPosition.y:F5},{touchOneValue.interactionPosition.z:F5}";
             logData.Add(entry);
         }
+    }
+
+    public void AddLog(string ui)
+    {
+        if (!is_started) return;
+
+        string entry = $"{timer:F2},{manager.currentDistance},{manager.currentState},{manager.currentDetail},--,--,--,{ui}_clicked";
+        logData.Add(entry);
     }
 
     public void SaveLog()
