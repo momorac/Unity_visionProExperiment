@@ -102,12 +102,12 @@ public class Manager : MonoBehaviour
             {
                 cycle = 2;
                 StartExperiment();
-                GetComponent<GazeTrackingController>().is_started = true;
+                GetComponent<TouchGazeTracker>().is_started = true;
                 return;
             }
             else if (cycle == 2)
             {
-                GetComponent<GazeTrackingController>().SaveLog();
+                GetComponent<TouchGazeTracker>().SaveLog();
                 Application.Quit();
                 return;
             }
@@ -135,9 +135,13 @@ public class Manager : MonoBehaviour
         currentDetail = _detail;
     }
 
+    private Coroutine cor_toast = null;
     public void ShowToastMessageDelay(string ment)
     {
-        StartCoroutine(ShowToastMessage(ment));
+        if (cor_toast == null)
+            cor_toast = StartCoroutine(ShowToastMessage(ment));
+        else
+            return;
     }
 
     private WaitForSeconds waitForSeconds = new WaitForSeconds(0.04f);
@@ -160,7 +164,8 @@ public class Manager : MonoBehaviour
             cg_toast.alpha -= 0.05f;
             yield return waitForSeconds;
         }
-        go_toast.SetActive(false); ;
+        go_toast.SetActive(false);
+        cor_toast = null;
     }
 
 
