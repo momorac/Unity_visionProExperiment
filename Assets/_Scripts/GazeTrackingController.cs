@@ -33,6 +33,8 @@ public class GazeTrackingController : MonoBehaviour
         string time = DateTime.Now.ToString("MMdd_HHmm");
         filePath = Path.Combine(Application.persistentDataPath, $"GazeLog_{time}.csv");
         logData.Add("Time,Distance,Page,Detail,XPos,YPos,ZPos"); // 헤더
+
+        // DeleteAllLogs();
     }
 
     void Update()
@@ -90,7 +92,33 @@ public class GazeTrackingController : MonoBehaviour
             Debug.Log("✅ 저장 확인: 파일이 존재합니다.");
         else
             Debug.Log("❌ 저장 실패: 파일이 존재하지 않습니다.");
+    }
 
+    public void DeleteAllLogs()
+    {
+        try
+        {
+            string[] files = Directory.GetFiles(Application.persistentDataPath, "GazeLog_*.csv");
+
+            foreach (string file in files)
+            {
+                File.Delete(file);
+                Debug.Log("🗑️ 삭제됨: " + file);
+            }
+
+            if (files.Length == 0)
+            {
+                Debug.Log("📁 삭제할 파일이 없습니다.");
+            }
+            else
+            {
+                Debug.Log($"✅ 총 {files.Length}개의 로그 파일을 삭제했습니다.");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("❌ 로그 파일 삭제 중 오류 발생: " + e.Message);
+        }
     }
 
 }

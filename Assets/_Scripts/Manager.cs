@@ -34,6 +34,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private Transform frame;
     [SerializeField] private CanvasGroup mainCanvas;
     [SerializeField] private GameObject[] pages;
+    [SerializeField] private GameObject instruction;
 
 
     [Space(10)]
@@ -44,7 +45,7 @@ public class Manager : MonoBehaviour
 
     private Dictionary<Distance, Vector3> distances = new Dictionary<Distance, Vector3>
     {
-        { Distance.Half, new Vector3(0, 1.2f, 0.5f) },
+        { Distance.Half, new Vector3(0, 1.1f, 0.5f) },
         { Distance.One, new Vector3(0, 1.2f, 1) },
         { Distance.Two, new Vector3(0, 1.2f, 2) },
     };
@@ -70,6 +71,7 @@ public class Manager : MonoBehaviour
     {
         cycle = 1;
         go_toast.SetActive(false);
+        instruction.SetActive(true);
     }
 
     // 1번째, 2번재 실험 초기화 메소드
@@ -135,7 +137,7 @@ public class Manager : MonoBehaviour
 
     public void ShowToastMessageDelay(string ment)
     {
-        StartCoroutine(ment);
+        StartCoroutine(ShowToastMessage(ment));
     }
 
     private WaitForSeconds waitForSeconds = new WaitForSeconds(0.04f);
@@ -151,7 +153,7 @@ public class Manager : MonoBehaviour
             yield return waitForSeconds;
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.1f);
 
         while (cg_toast.alpha > 0)
         {
