@@ -37,9 +37,9 @@ public class Manager : MonoBehaviour
 
     private Dictionary<Distance, Vector3> distances = new Dictionary<Distance, Vector3>
     {
-        { Distance.Half, new Vector3(0, 1, 0.5f) },
-        { Distance.One, new Vector3(0, 1, 1) },
-        { Distance.Two, new Vector3(0, 1, 2) },
+        { Distance.Half, new Vector3(0, 1.2f, 0.5f) },
+        { Distance.One, new Vector3(0, 1.2f, 1) },
+        { Distance.Two, new Vector3(0, 1.2f, 2) },
     };
 
     private Dictionary<Distance, Vector3> scales = new Dictionary<Distance, Vector3>
