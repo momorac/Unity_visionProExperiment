@@ -13,6 +13,7 @@ Shader "Custom/ShadowOnly"
             "RenderType"="Transparent"
             "Queue"="Transparent"
             "IgnoreProjector"="True"
+            "PreviewType"="Plane"
         }
         LOD 100
 
@@ -35,8 +36,9 @@ Shader "Custom/ShadowOnly"
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ _SHADOWS_SOFT
 
-            // XR / Instancing
+            // XR / Instancing - VisionOS 호환성
             #pragma multi_compile_instancing
+            #pragma multi_compile _ UNITY_SINGLE_PASS_STEREO STEREO_INSTANCING_ON STEREO_MULTIVIEW_ON
             #pragma prefer_hlslcc gles
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -82,8 +84,16 @@ Shader "Custom/ShadowOnly"
                     Light mainLight = GetMainLight();
                 #endif
 
-                float shadow = saturate(1.0 - mainLight.shadowAttenuation); // 0~1
+                // VisionOS에서 섀도우가 제대로 작동하지 않을 경우를 대비한 fallback
+                float shadow = 1.0 - mainLight.shadowAttenuation;
+                
+                // 섀도우가 없거나 매우 작은 경우 최소값 보장
+                shadow = max(shadow, 0.1);
+                
                 float a = saturate(shadow * _ShadowOpacity);
+                
+                // 알파가 너무 작으면 아무것도 보이지 않으므로 최소값 설정
+                a = max(a, 0.1);
 
                 // 검정 + 알파만 출력 → 배경을 어둡게
                 return half4(0, 0, 0, a);
