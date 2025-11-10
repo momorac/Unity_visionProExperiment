@@ -45,7 +45,7 @@ public class SecondExperiment_Re_window : MonoBehaviour
 
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
 
-        if (wheelInput>0)
+        if (wheelInput!=0)
         {
             AdjustScale(wheelInput * wheelSpeed);
             text_scale.text = $"Scale : {currentScale}";
