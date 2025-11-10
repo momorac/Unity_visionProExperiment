@@ -7,6 +7,7 @@ public class SecondExperiment_Re_window : MonoBehaviour
 {
     public float initialDistance = 1f;
     public float wheelSpeed = 0.1f;
+    public float positionOffset;
 
     [Space(10)]
     [SerializeField] private Transform go_cube;
@@ -56,7 +57,7 @@ public class SecondExperiment_Re_window : MonoBehaviour
     {
         float newDistance = currentDistance + value;
 
-        go_cube.position = new Vector3(0, 0, newDistance);
+        go_cube.position = new Vector3(0, 0, newDistance + positionOffset);
 
         currentDistance = newDistance;
     }

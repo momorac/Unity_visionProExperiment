@@ -955,6 +955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialDistance: 1
   wheelSpeed: 0.1
+  positionOffset: -2.1
   go_cube: {fileID: 1654417626}
   tr_cube: {fileID: 1575695406}
   tr_shadow: {fileID: 1009387105}
