@@ -6,8 +6,8 @@ using TMPro;
 public class SecondExperiment_Re_window : MonoBehaviour
 {
     public float initialDistance = 1f;
+    public float initialScale = 0.55f;
     public float wheelSpeed = 0.1f;
-    public float positionOffset;
 
     [Space(10)]
     [SerializeField] private Transform go_cube;
@@ -25,8 +25,11 @@ public class SecondExperiment_Re_window : MonoBehaviour
 
     private void Start()
     {
-        currentScale = new Vector3(1, 1, 1);
         currentDistance = initialDistance;
+        currentScale = new Vector3(initialScale, initialScale, initialScale);
+
+        AdjustDistance(0);
+        AdjustScale(0);
     }
 
 
@@ -35,12 +38,10 @@ public class SecondExperiment_Re_window : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             AdjustDistance(-0.1f);
-            text_distance.text = $"Distance : {currentDistance}";
         }
         else if (Input.GetMouseButtonDown(1))
         {
             AdjustDistance(0.1f);
-            text_distance.text = $"Distance : {currentDistance}";
         }
 
 
@@ -49,7 +50,6 @@ public class SecondExperiment_Re_window : MonoBehaviour
         if (wheelInput!=0)
         {
             AdjustScale(wheelInput * wheelSpeed);
-            text_scale.text = $"Scale : {currentScale}";
         }
     }
 
@@ -57,9 +57,10 @@ public class SecondExperiment_Re_window : MonoBehaviour
     {
         float newDistance = currentDistance + value;
 
-        go_cube.position = new Vector3(0, 0, newDistance + positionOffset);
+        go_cube.position = new Vector3(0, 0, newDistance);
 
         currentDistance = newDistance;
+        text_distance.text = $"Distance : {currentDistance}";
     }
 
     private void AdjustScale(float value)
@@ -70,6 +71,7 @@ public class SecondExperiment_Re_window : MonoBehaviour
         tr_shadow.localScale = newScale;
 
         currentScale = newScale;
+        text_scale.text = $"Scale : {currentScale}";
     }
 
 }
