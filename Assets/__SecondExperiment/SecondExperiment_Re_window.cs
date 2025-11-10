@@ -57,7 +57,7 @@ public class SecondExperiment_Re_window : MonoBehaviour
     {
         float newDistance = currentDistance + value;
 
-        go_cube.position = new Vector3(0, 0, newDistance);
+        go_cube.position = new Vector3(-0.4f, 0, newDistance);
 
         currentDistance = newDistance;
         text_distance.text = $"Distance : {currentDistance}";
