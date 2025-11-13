@@ -25,7 +25,7 @@ public class StepChanger : MonoBehaviour
 
     public void ChangeStep()
     {
-        OnScaleChanged.Invoke(steps[currentStep]);
+        OnScaleChanged.Invoke(steps[currentStep%steps.Length]);
         currentStep++;
     }
 

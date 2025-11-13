@@ -898,8 +898,8 @@ MonoBehaviour:
   go_cube: {fileID: 2051707553}
   tr_cube: {fileID: 849766620}
   text_currentStep: {fileID: 88070918}
-  text_distance: {fileID: 0}
-  text_scale: {fileID: 0}
+  text_distance: {fileID: 336892771}
+  text_scale: {fileID: 803572623}
 --- !u!114 &152505963
 MonoBehaviour:
   m_ObjectHideFlags: 0
