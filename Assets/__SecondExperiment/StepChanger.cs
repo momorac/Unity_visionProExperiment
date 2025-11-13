@@ -16,7 +16,7 @@ public class StepChanger : MonoBehaviour
     private void Start()
     {
         InitSteps();
-        ShuffleSteps();
+        //ShuffleSteps();
 
         currentStep = 0;
         ChangeStep();
