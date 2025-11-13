@@ -11,27 +11,41 @@ public class StepChanger : MonoBehaviour
     public Step[] steps;
     public Action<Step> OnScaleChanged;
 
-    private int currentStep;
+    [HideInInspector]public int currentStep;
+    [HideInInspector] public int steps_length;
+
+    private float clickTimer;
+    public float clickInterval = 2f;
 
     private void Start()
     {
         InitSteps();
-        //ShuffleSteps();
+        steps_length = steps.Length;
 
         currentStep = 0;
-        ChangeStep();
+    }
+
+    private void Update()
+    {
+        clickTimer += Time.deltaTime;
     }
 
 
     public void ChangeStep()
     {
-        OnScaleChanged.Invoke(steps[currentStep%steps.Length]);
+        if (clickTimer < clickInterval)
+            return;
+        else
+            clickTimer = 0;
+
+
+        OnScaleChanged.Invoke(steps[currentStep% steps_length]);
         currentStep++;
     }
 
     private void InitSteps()
     {
-        for (int i = 0; i<steps.Length; i++)
+        for (int i = 0; i< steps_length; i++)
         {
             float originValue = steps[i].scale_origin.x;
 
@@ -46,7 +60,7 @@ public class StepChanger : MonoBehaviour
     {
         for (int i = 0; i < steps.Length; i++)
         {
-            int randIndex = Random.Range(i, steps.Length);
+            int randIndex = Random.Range(i, steps_length);
             (steps[i], steps[randIndex]) = (steps[randIndex], steps[i]);
         }
     }

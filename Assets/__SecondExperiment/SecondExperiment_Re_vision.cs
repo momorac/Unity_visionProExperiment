@@ -20,10 +20,10 @@ public class SecondExperiment_Re_vision : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text_currentStep;
     [SerializeField] private TextMeshProUGUI text_distance;
     [SerializeField] private TextMeshProUGUI text_scale;
+    [SerializeField] private TextMeshProUGUI text_button;
 
 
     private StepChanger stepChanger;
-
 
     private void Awake()
     {
@@ -32,9 +32,19 @@ public class SecondExperiment_Re_vision : MonoBehaviour
         stepChanger.OnScaleChanged += ((step) => OnScaleChanged(step));
     }
 
+ 
 
     private void OnScaleChanged(Step step)
     {
+        if (stepChanger.currentStep == stepChanger.steps_length -1)
+        {
+            text_button.text = "Finish";
+        }
+        else if (stepChanger.currentStep >= stepChanger.steps_length)
+        {
+            Application.Quit();
+        }
+
         go_cube.position = new Vector3(0, 0, step.distance);
 
         if (type == Type.AVP)
@@ -50,5 +60,6 @@ public class SecondExperiment_Re_vision : MonoBehaviour
 
         text_currentStep.text = step.step_label;
         text_distance.text = "Distance : " + step.distance.ToString("F2");
+
     }
 }
