@@ -5,8 +5,14 @@ using TMPro;
 
 public class SecondExperiment_Re_window : MonoBehaviour
 {
-    public float initialDistance = 1f;
-    public float initialScale = 0.55f;
+
+    public enum Type
+    {
+        AVP,
+        PM
+    }
+
+    public Type type;
     public float wheelSpeed = 0.1f;
 
     [Space(10)]
@@ -15,52 +21,36 @@ public class SecondExperiment_Re_window : MonoBehaviour
     [SerializeField] private Transform tr_shadow;
 
     [Space(10)]
+    [SerializeField] private TextMeshProUGUI text_currentStep;
     [SerializeField] private TextMeshProUGUI text_distance;
     [SerializeField] private TextMeshProUGUI text_scale;
 
 
-    private float currentDistance;
     private Vector3 currentScale;
 
+    private StepChanger stepChanger;
 
-    private void Start()
+
+    private void Awake()
     {
-        currentDistance = initialDistance;
-        currentScale = new Vector3(initialScale, initialScale, initialScale);
+        stepChanger = GetComponent<StepChanger>();
 
-        AdjustDistance(0);
-        AdjustScale(0);
+        stepChanger.OnScaleChanged += ((step) => OnScaleChanged(step));
     }
-
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            AdjustDistance(-0.1f);
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            AdjustDistance(0.1f);
-        }
-
-
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
 
         if (wheelInput!=0)
         {
             AdjustScale(wheelInput * wheelSpeed);
         }
-    }
 
-    private void AdjustDistance(float value)
-    {
-        float newDistance = currentDistance + value;
-
-        go_cube.position = new Vector3(-0.4f, 0, newDistance);
-
-        currentDistance = newDistance;
-        text_distance.text = $"Distance : {currentDistance}";
+        if (Input.GetMouseButtonDown(0))
+        {
+            stepChanger.ChangeStep();
+        }
     }
 
     private void AdjustScale(float value)
@@ -72,6 +62,27 @@ public class SecondExperiment_Re_window : MonoBehaviour
 
         currentScale = newScale;
         text_scale.text = $"Scale : {currentScale}";
+    }
+
+    private void OnScaleChanged(Step step)
+    {
+        go_cube.position = new Vector3(0, 0, step.distance);
+
+        if (type == Type.AVP)
+        {
+            tr_cube.localScale = step.scale_origin;
+            currentScale = step.scale_origin;
+            text_scale.text = "Scale : " + step.scale_origin.x.ToString("F3");
+        }
+        else if (type == Type.PM)
+        {
+            tr_cube.localScale = step.scale_adjusted;
+            currentScale = step.scale_adjusted;
+            text_scale.text = "Scale : " + step.scale_adjusted.x.ToString("F3");
+        }
+
+        text_currentStep.text = step.step_label;
+        text_distance.text = "Distance : " + step.distance.ToString("F2");
     }
 
 }
