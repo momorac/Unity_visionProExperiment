@@ -6,47 +6,49 @@ using UnityEngine.UI;
 
 public class SecondExperiment_Re_vision : MonoBehaviour
 {
-    [Header("Controll")]
-    [SerializeField] private float minDistance;
-    [SerializeField] private float maxDistance;
-    [SerializeField] private float minScale;
-    [SerializeField] private float maxScale;
-    [SerializeField] private float initialDistance = 1f;
-    [SerializeField] private float initialScale = 0.55f;
+    public enum Type
+    {
+        AVP,
+        PM
+    }
 
-
-
+    public Type type;
 
     [Header("Reference")]
     [SerializeField] private Transform go_cube;
     [SerializeField] private Transform tr_cube;
+    [SerializeField] private TextMeshProUGUI text_currentStep;
     [SerializeField] private TextMeshProUGUI text_distance;
     [SerializeField] private TextMeshProUGUI text_scale;
 
 
-    private Vector3 scaleBuffer = new Vector3();
+    private StepChanger stepChanger;
 
-    private void Start()
+
+    private void Awake()
     {
-        go_cube.position = new Vector3(0, 0, initialDistance);
-        tr_cube.localScale = new Vector3(initialScale, initialScale, initialScale);
+        stepChanger = GetComponent<StepChanger>();
+
+        stepChanger.OnScaleChanged += ((step) => OnScaleChanged(step));
     }
 
-    public void OnDistanceChanged(float value)
+
+    private void OnScaleChanged(Step step)
     {
-        float targetDistance = Mathf.Lerp(minDistance, maxDistance, value);
+        go_cube.position = new Vector3(0, 0, step.distance);
 
-        go_cube.position = new Vector3(0, 0, targetDistance);
-        text_distance.text = targetDistance.ToString("F2");
-    }
+        if (type == Type.AVP)
+        {
+            tr_cube.localScale = step.scale_origin;
+            text_scale.text = "Scale : " + step.scale_origin.x.ToString("F3");
+        }
+        else if (type == Type.PM)
+        {
+            tr_cube.localScale = step.scale_adjusted;
+            text_scale.text = "Scale : " + step.scale_adjusted.x.ToString("F3");
+        }
 
-    public void OnScaleChanged(float value)
-    {
-        float targetValue = Mathf.Lerp(minScale, maxScale, value);
-
-        Vector3 newScale = new Vector3(targetValue, targetValue, targetValue);
-        tr_cube.localScale = newScale;
-        text_scale.text = targetValue.ToString("F2");
-
+        text_currentStep.text = step.step_label;
+        text_distance.text = "Distance : " + step.distance.ToString("F2");
     }
 }
